@@ -21,7 +21,9 @@ public class HandGestureXR_RPS : MonoBehaviour
 
     [Header("Events")]
     public UnityEvent<GestureType> OnGestureChanged;
-    
+    public UnityEvent<GestureType> GestureAction;
+
+
     public GestureType CurrentGesture { get; private set; } = GestureType.None;
 
     private GestureType _candidate = GestureType.None;
@@ -68,6 +70,8 @@ public class HandGestureXR_RPS : MonoBehaviour
                 OnGestureChanged?.Invoke(CurrentGesture);
             }
         }
+
+        GestureAction?.Invoke(CurrentGesture);
     }
 
     /// <summary>
