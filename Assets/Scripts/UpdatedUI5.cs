@@ -41,5 +41,48 @@ public class UpdatedUI5 : MonoBehaviour
             isSelecting = true;
         }
     }
-    
+
+
+    //checking
+    public void number2()
+    {
+        Debug.Log("2 balloon poke");
+    }
+
+    public void number3()
+    {
+        Debug.Log("3 balloon poke");
+    }
+    public void number4()
+    {
+        Debug.Log("4 balloon poke");
+    }
+    public void number6()
+    {
+        Debug.Log("6 balloon poke");
+    }
+    public void number7()
+    {
+        Debug.Log("7 balloon poke");
+    }
+
+    public void number8()
+    {
+        Debug.Log("8 balloon poke");
+    }
+
+    public void number9()
+    {
+        Debug.Log("9 balloon poke");
+    }
+
+    public void number11()
+    {
+        Debug.Log("11 balloon poke");
+    }
+
+    public void number12()
+    {
+        Debug.Log("12 balloon poke");
+    }
 }
