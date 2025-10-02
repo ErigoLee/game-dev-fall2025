@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using Oculus.Interaction.Input;
 
-public enum GestureType { None, Rock, Paper, Scissors }
+
 public class HandGestureXR_RPS : MonoBehaviour
 {
     [Header("References (Interaction SDK)")]
