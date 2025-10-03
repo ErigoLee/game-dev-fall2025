@@ -8,6 +8,8 @@ public class HandGestureAction : MonoBehaviour
     [SerializeField] private GameObject player;
     private Vector3 forwardDir;
 
+
+
     private float speed = 1f;
     // Start is called before the first frame update
     void Start()
@@ -32,5 +34,20 @@ public class HandGestureAction : MonoBehaviour
 
             player.transform.Translate(forwardDir * speed * Time.deltaTime);
         }
+    }
+
+
+    public void PerformGestureAction(HandGestureData _handGesture, bool isLeft)
+    {
+        if (isLeft)
+        {
+            Debug.Log("LeftHandGestureData: " + _handGesture.name);
+        }
+        else
+        {
+            Debug.Log("RightHandGestureData: " + _handGesture.name);
+        }
+        
+
     }
 }

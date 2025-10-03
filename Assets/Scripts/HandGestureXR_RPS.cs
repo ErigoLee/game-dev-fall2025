@@ -34,6 +34,7 @@ public class HandGestureXR_RPS : MonoBehaviour
     void Update()
     {
         if (hand == null || !hand.IsTrackedDataValid) return;
+        //Debug.Log($"Hand IsTrackedDataValid: {hand.IsTrackedDataValid}, Hand name: {hand.gameObject.name}");
 
         // Finger extended/curl detection
         bool idxExt  = IsFingerExtended(HandJointId.HandIndex1,  HandJointId.HandIndex2,  HandJointId.HandIndex3,  HandJointId.HandIndexTip);
