@@ -29,11 +29,28 @@ public class UpdatedUI : MonoBehaviour
         GetComponent<TextMeshProUGUI>().text = "Congrats on grabbing the box!";
     }
 
+    
     public void GestureRecognized(GestureType gestureType){
 
         GetComponent<TextMeshProUGUI>().text = "Gesture recognized as: " + gestureType;
 
     }
 
-    
+    public void PerformGestureNotification(HandGestureData _handGesture, bool isLeft)
+    {
+        if (isLeft)
+        {
+            GetComponent<TextMeshProUGUI>().text = "LeftHandGestureData: " + _handGesture.name;
+            //Debug.Log("LeftHandGestureData: " + _handGesture.name);
+        }
+        else
+        {
+            GetComponent<TextMeshProUGUI>().text = "RightHandGestureData: " + _handGesture.name;
+            Debug.Log("RightHandGestureData: " + _handGesture.name);
+        }
+
+
+    }
+
+
 }

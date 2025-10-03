@@ -23,7 +23,7 @@ public class HandJointRecord : MonoBehaviour
     private List<Vector3> _recordedJointPositions = new List<Vector3>();
 
     // After gesture data is obtained, it will be passed to GestureJointSaveManger.
-    public static event Action<HandGestureDate, bool> ConveyGestureData;
+    public static event Action<HandGestureData, bool> ConveyGestureData;
 
     // This threshold seems unused in the provided code.
     // If it's for future use (e.g., for filtering similar poses), keep it.
@@ -150,7 +150,7 @@ public class HandJointRecord : MonoBehaviour
             Debug.LogWarning($"Cannot store joint data for {handToStore.gameObject.name} because its tracking data is not valid.");
         }
         //ReadingPose();
-        HandGestureDate newHandGesture = new HandGestureDate("newGesture", _recordedJointPositions);
+        HandGestureData newHandGesture = new HandGestureData("newGesture", _recordedJointPositions);
         if (IsLeftHandActive)
         {
             ConveyGestureData?.Invoke(newHandGesture, true);

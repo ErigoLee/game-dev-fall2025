@@ -13104,6 +13104,8 @@ GameObject:
   - component: {fileID: 773190236}
   - component: {fileID: 773190237}
   - component: {fileID: 773190238}
+  - component: {fileID: 773190240}
+  - component: {fileID: 773190239}
   m_Layer: 0
   m_Name: GestureRecognizer
   m_TagString: Untagged
@@ -13192,19 +13194,7 @@ MonoBehaviour:
         m_CallState: 2
   GestureAction:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 773190236}
-        m_TargetAssemblyTypeName: HandGestureAction, Assembly-CSharp
-        m_MethodName: ExecuteGestureAction
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &773190233
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13285,7 +13275,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 773190229}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 09bcc926e76c83c44bff2718baa7c976, type: 3}
   m_Name: 
@@ -13301,9 +13291,77 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 773190229}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2d25020e921b2e042901173a2dc93801, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &773190239
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 773190229}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12ba673f88e020548a8ec46810cc2377, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leftHand: {fileID: 425020937}
+  rightHand: {fileID: 1786184148}
+  LeftHandGestureAction:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 773190236}
+        m_TargetAssemblyTypeName: HandGestureAction, Assembly-CSharp
+        m_MethodName: PerformGestureAction
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1267829351}
+        m_TargetAssemblyTypeName: UpdatedUI, Assembly-CSharp
+        m_MethodName: PerformGestureAction
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  RightHandGestureAction:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 773190236}
+        m_TargetAssemblyTypeName: HandGestureAction, Assembly-CSharp
+        m_MethodName: PerformGestureAction
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &773190240
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 773190229}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a12e727066481e74dbd50c726eeddeb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &789026898 stripped
