@@ -66,6 +66,7 @@ public class HandJointSaveManager : MonoBehaviour
             saveRightHandGesture.Add(newHandGesture);
         }
 
+
         // Save the current data to JSON files
         SaveDate();
        

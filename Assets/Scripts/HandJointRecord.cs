@@ -104,6 +104,13 @@ public class HandJointRecord : MonoBehaviour
         {
             _recordedJointPositions.Clear(); // Clear previous data to store the new snapshot
 
+            //1. GetRootPose()
+            if(!handToStore.GetRootPose(out Pose rootPose))
+            {
+                Debug.Log("Failed to get root pose!");
+                return;
+            }
+
             // Cache the enum values once to avoid repeated allocations if this method were called frequently
             // For a Space key press, it's not strictly necessary, but good practice.
             // Using OfType<HandJointId>() filters out potential invalid casts from GetValues() if the enum has weird definitions.
@@ -126,9 +133,9 @@ public class HandJointRecord : MonoBehaviour
                     if (handToStore.GetJointPose(joint, out Pose pose))
                     {
                         // Get position relative to the hand's transform
-                        Vector3 localPosition = handToStore.transform.InverseTransformPoint(pose.position);
-                        _recordedJointPositions.Add(localPosition);
-                        // Debug.Log($"Recorded joint {handToStore.gameObject.name}: {joint.ToString()} at local {localPosition}");
+                        Vector3 relativePos = pose.position - rootPose.position;
+                        Vector3 localPos = Quaternion.Inverse(rootPose.rotation) * relativePos;
+                        _recordedJointPositions.Add(localPos);
                     }
                     else
                     {

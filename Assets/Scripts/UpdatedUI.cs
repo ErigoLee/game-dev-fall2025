@@ -41,7 +41,7 @@ public class UpdatedUI : MonoBehaviour
         if (isLeft)
         {
             GetComponent<TextMeshProUGUI>().text = "LeftHandGestureData: " + _handGesture.name;
-            //Debug.Log("LeftHandGestureData: " + _handGesture.name);
+            Debug.Log("LeftHandGestureData: " + _handGesture.name);
         }
         else
         {

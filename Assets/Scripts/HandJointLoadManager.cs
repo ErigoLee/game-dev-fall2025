@@ -4,61 +4,76 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
+
+/// <summary>
+/// Manages the loading of hand gesture data from JSON files.
+/// This class loads predefined gesture data for left and right hands at startup
+/// and notifies subscribers via static events.
+/// </summary>
+/// <remarks>
+/// Assumes JSON files are located at "Application.dataPath/Scripts/leftdata.json" and "rightdata.json".
+/// Uses JsonHelper for deserialization. Ensure JsonHelper is implemented correctly.
+/// </remarks>
 public class HandJointLoadManager : MonoBehaviour
 {
+    /// <summary>
+    /// Event triggered when left hand gesture data is loaded.
+    /// Subscribers can listen to this event to receive the loaded gesture data.
+    /// </summary>
     public static event Action<List<HandGestureData>> LoadLeftHandGestureData;
+    /// <summary>
+    /// Event triggered when right hand gesture data is loaded.
+    /// Subscribers can listen to this event to receive the loaded gesture data.
+    /// </summary>
     public static event Action<List<HandGestureData>> LoadRightHandGestureData;
 
-    // Start is called before the first frame update
+    /// <summary>
+    /// Called when the script instance is being loaded.
+    /// Initializes the loading process for gesture data.
+    /// </summary>
     void Start()
     {
         LoadData();
     }
 
+    /// <summary>
+    /// Loads gesture data from JSON files and invokes the corresponding events.
+    /// Reads data for both left and right hands, deserializes it, and notifies subscribers.
+    /// </summary>
+    /// <remarks>
+    /// If a file is missing or deserialization fails, an error is logged, and the event may not be invoked.
+    /// Ensure HandGestureData class is properly serializable.
+    /// </remarks>
     private void LoadData()
     {
+        // Initialize lists for gesture data
         List<HandGestureData> leftHandGesture = new List<HandGestureData>();
         List<HandGestureData> rightHandGesture = new List<HandGestureData>();
-        string leftHandGestureDataJson = File.ReadAllText(Application.dataPath + "/Scripts/leftdata.json");
-        //Debug.Log("leftHandGestureDataJson: " + leftHandGestureDataJson);
-        leftHandGesture = JsonHelper.FromJson<HandGestureData>(leftHandGestureDataJson);
-
-        string rightHandGestureDataJson = File.ReadAllText(Application.dataPath + "/Scripts/rightdata.json");
-        //Debug.Log("rightHandGestureDataJson: " + rightHandGestureDataJson);
-        rightHandGesture = JsonHelper.FromJson<HandGestureData>(rightHandGestureDataJson);
 
 
-        /*
-        Debug.Log("LeftHandGesture: " + leftHandGesture.Count);
-        Debug.Log("RightHandGesture: " + rightHandGesture.Count);
-
-        foreach(HandGestureData handGestureData in leftHandGesture)
+        try
         {
-            Debug.Log("LeftHandGesture!!: " + handGestureData.name);
-        }
-        foreach(HandGestureData handGestureData1 in rightHandGesture)
-        {
-            Debug.Log("RightHandGesture!!: "+ handGestureData1.name);
-        }
-        */
-        LoadLeftHandGestureData.Invoke(leftHandGesture);
-        LoadRightHandGestureData.Invoke(rightHandGesture);
-        /*
-        TextAsset ta = Resources.Load<TextAsset>("Scripts/leftdata");
-        if (ta != null)
-        {
-            Debug.LogError("leftdata.json not found!");
-        }
-        List<HandGestureData> leftHandGesture = JsonHelper.FromJson<HandGestureData>(ta.text);
+            // Load and deserialize left hand gesture data
+            string leftHandGestureDataJson = File.ReadAllText(Application.dataPath + "/Scripts/leftdata.json");
+            leftHandGesture = JsonHelper.FromJson<HandGestureData>(leftHandGestureDataJson);
 
-        TextAsset ta2 = Resources.Load<TextAsset>("Scripts/rightdata");
-        if (ta2 != null)
-        {
-            Debug.LogError("rightdata.json not found!");
+            // Load and deserialize right hand gesture data
+            string rightHandGestureDataJson = File.ReadAllText(Application.dataPath + "/Scripts/rightdata.json");
+            rightHandGesture = JsonHelper.FromJson<HandGestureData>(rightHandGestureDataJson);
+
+            // Invoke events to notify subscribers
+            LoadLeftHandGestureData?.Invoke(leftHandGesture);
+            LoadRightHandGestureData?.Invoke(rightHandGesture);
+
+            Debug.Log($"Successfully loaded {leftHandGesture.Count} left hand gestures and {rightHandGesture.Count} right hand gestures.");
         }
-        List<HandGestureData> rightHandGesture = JsonHelper.FromJson<HandGestureData>(ta2.text);
-        LoadLeftHandGestureData.Invoke(leftHandGesture);
-        LoadRightHandGestureData.Invoke(rightHandGesture);
-        */
+        catch (FileNotFoundException ex)
+        {
+            Debug.LogError($"Gesture data file not found: {ex.FileName}. Ensure JSON files exist in the Scripts folder.");
+        }
+        catch (Exception ex)
+        {
+            Debug.LogError($"Failed to load gesture data: {ex.Message}. Check JSON format and file paths.");
+        }
     }
 }

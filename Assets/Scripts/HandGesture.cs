@@ -27,7 +27,7 @@ public class HandGesture
     public HandGesture(GestureType _gestureType, List<Vector3> _jointPositions)
     {
         gestureType = _gestureType;
-        jointPositions = _jointPositions;
+        jointPositions = new List<Vector3>(_jointPositions);
     }
 
 }
@@ -43,7 +43,7 @@ public class HandGestureData
     public HandGestureData(string _name, List<Vector3> _jointPositions)
     {
         name = _name;
-        jointPositions = _jointPositions;
+        jointPositions = new List<Vector3>(_jointPositions);
     }
 
     public HandGestureData()
@@ -51,17 +51,21 @@ public class HandGestureData
         name = "";
         jointPositions = new List<Vector3>();
     }
+
+    public HandGestureData(List<Vector3> _jointPositions)
+    {
+        name = "";
+        jointPositions = new List<Vector3>(_jointPositions);
+    }
 }
 
 
 /// <summary>
-/// JsonHelper is a static utility class that helps with serializing and deserializing object lists into JSON format.
-/// It allows you to turn C# data into a JSON string, or turn a JSON string back into usable C# data.
+/// Change the JSON data into a List<T> object.
 /// </summary>
-/// </summary>
-/// <typeparam name="T">The type of objects to deserialize.</typeparam>
-/// <param name="json">The JSON string to convert.</param>
-/// <returns>A List of objects of type T.</returns>
+/// <typeparam name="T">The type of objects in the list.</typeparam>
+/// <param name="json">The JSON string to deserialize.</param>
+/// <returns>A list of objects of type T, or an empty list if deserialization fails.</returns>
 public static class JsonHelper
 {
     /// Change the JSON data into a Wrapper<T> object
