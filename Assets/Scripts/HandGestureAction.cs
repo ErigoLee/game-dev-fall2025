@@ -50,4 +50,18 @@ public class HandGestureAction : MonoBehaviour
         
 
     }
+
+    public void ExecuteGoingAction(HandGestureData leftGesture, HandGestureData rightGesture)
+    {
+        if (leftGesture == null || rightGesture == null) { return; }
+
+        if (string.Equals(leftGesture.name, "One") && string.Equals(rightGesture.name, "One"))
+        {
+            forwardDir = lookcam.transform.forward;
+            forwardDir.y = 0;
+            forwardDir.Normalize();
+
+            player.transform.Translate(forwardDir * speed * Time.deltaTime);
+        }
+    }
 }

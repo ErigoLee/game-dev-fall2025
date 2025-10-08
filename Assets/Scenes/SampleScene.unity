@@ -3440,6 +3440,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: OVRCameraRigInteraction
       objectReference: {fileID: 0}
+    - target: {fileID: 7215171681461543761, guid: f54012181eacade4ea242c65f804720f,
+        type: 3}
+      propertyPath: _skeletonType
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7215171682644439250, guid: f54012181eacade4ea242c65f804720f,
+        type: 3}
+      propertyPath: _skeletonType
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -13327,7 +13337,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 1267829351}
         m_TargetAssemblyTypeName: UpdatedUI, Assembly-CSharp
-        m_MethodName: PerformGestureAction
+        m_MethodName: PerformGestureNotification
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -13352,6 +13362,34 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1267829351}
+        m_TargetAssemblyTypeName: UpdatedUI, Assembly-CSharp
+        m_MethodName: PerformGestureNotification
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  BothHandGestureAction:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 773190236}
+        m_TargetAssemblyTypeName: HandGestureAction, Assembly-CSharp
+        m_MethodName: ExecuteGoingAction
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  threshold: 0.05
 --- !u!114 &773190240
 MonoBehaviour:
   m_ObjectHideFlags: 0
