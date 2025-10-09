@@ -17,7 +17,7 @@ public class PrimeChecker : MonoBehaviour
     public UnityEvent<int> EnterHandBalloon;
     public UnityEvent<int> ExitHandBalloon;
 
-    private void start()
+    private void Start()
     {
         leftHandGesture = new HandGestureData();
         rightHandGesture = new HandGestureData();

@@ -15,8 +15,6 @@ TagManager:
   - QDSUIIcon
   - QDSUITextSecondaryColor
   - QDSUIBackplateGradient
-  - LeftHand
-  - RightHand
   layers:
   - Default
   - TransparentFX
