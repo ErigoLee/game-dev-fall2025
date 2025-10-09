@@ -53,10 +53,10 @@ EditorBuildSettings:
   - enabled: 0
     path: "Assets/Samples/Meta XR Interaction \u200BSDK/77.0.0/Example Scenes/TouchGrabExamples.unity"
     guid: ade7d3882b4495145a8fe79f5624beab
-  - enabled: 1
+  - enabled: 0
     path: "Assets/Samples/Meta XR Interaction \u200BSDK/77.0.0/Example Scenes/TransformerExamples.unity"
     guid: 7475942f60c376744ba1ec487d140105
-  - enabled: 1
+  - enabled: 0
     path: "Assets/Samples/Meta XR Interaction \u200BSDK/77.0.0/Example Scenes/UISetExamples.unity"
     guid: 07e3686372a704147b219707ee3c6f62
   m_configObjects:

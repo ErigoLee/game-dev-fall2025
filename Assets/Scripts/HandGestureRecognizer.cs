@@ -1,4 +1,5 @@
 using Oculus.Interaction.Input;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -103,6 +104,9 @@ public class HandGestureRecognizer : MonoBehaviour
     [Range(0.01f, 0.2f)]
     private float threshold = 0.05f;
 
+
+    public static event Action<HandGestureData, HandGestureData> ConveyHandGestures;
+
     /// <summary>
     /// Initializes the gesture recognizer.
     /// Sets up lists and gesture data objects, and resets loading flags.
@@ -204,6 +208,8 @@ public class HandGestureRecognizer : MonoBehaviour
     {
         if (isLoadingRight && isLoadingLeft)
         {
+            currentLeftHandGesture = new HandGestureData();
+            currentRightHandGesture = new HandGestureData();
             GetGestureData(leftHand);
             GetGestureData(rightHand);
             TriggerDualGesture();
@@ -219,8 +225,8 @@ public class HandGestureRecognizer : MonoBehaviour
                 preRightHandGesture.name = currentRightHandGesture.name;
                 preRightHandGesture.jointPositions = new List<Vector3>(currentRightHandGesture.jointPositions); // Deep copy
             }
-            currentLeftHandGesture = new HandGestureData();
-            currentRightHandGesture = new HandGestureData();
+
+            ConveyHandGestures?.Invoke(currentLeftHandGesture, currentRightHandGesture);
         }
 
     }

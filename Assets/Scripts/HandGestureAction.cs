@@ -7,21 +7,9 @@ public class HandGestureAction : MonoBehaviour
     [SerializeField] private GameObject lookcam;
     [SerializeField] private GameObject player;
     private Vector3 forwardDir;
-
-
-
+    private Vector3 backwardDir;
     private float speed = 1f;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    
 
     public void ExecuteGestureAction(GestureType gestureType)
     {
@@ -62,6 +50,20 @@ public class HandGestureAction : MonoBehaviour
             forwardDir.Normalize();
 
             player.transform.Translate(forwardDir * speed * Time.deltaTime);
+        }
+    }
+
+    public void ExecuteBackGoingAction(HandGestureData leftGesture, HandGestureData rightGesture)
+    {
+        if (leftGesture == null || rightGesture == null) { return; }
+
+        if (string.Equals(leftGesture.name, "Thumb") && string.Equals(rightGesture.name, "Thumb"))
+        {
+            backwardDir = -lookcam.transform.forward;
+            backwardDir.y = 0;
+            backwardDir.Normalize();
+
+            player.transform.Translate(backwardDir * speed * Time.deltaTime);
         }
     }
 }
