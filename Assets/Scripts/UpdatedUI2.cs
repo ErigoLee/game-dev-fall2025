@@ -6,11 +6,6 @@ using TMPro;
 
 public class UpdatedUI2 : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-       Container.ContainerEventAct +=UpdateConText;
-    }
 
     void UpdateConText(object c)
     {

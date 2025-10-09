@@ -6,17 +6,6 @@ using TMPro;
 
 public class UpdatedUI : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-       Cube.cubeEventAct+=UpdateBoxText;
-       NumberCube.numCubEventAct+=UpdateNumBoxText;
-    }
-    void OnDestroy()
-    {
-       Cube.cubeEventAct-=UpdateBoxText;
-       NumberCube.numCubEventAct-=UpdateNumBoxText;
-    }
     
     // this method will be called when cube notifies us that it was collected
     void UpdateNumBoxText(object c)
