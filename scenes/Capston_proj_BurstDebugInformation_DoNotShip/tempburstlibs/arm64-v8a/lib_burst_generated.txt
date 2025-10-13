@@ -11,7 +11,7 @@ Library: /Users/idayeon/Desktop/Capstone_proj_Fall2025/Capston_proj2/Temp/BurstO
 --float-mode=Fast
 --generate-link-xml=Temp/burst.link.xml
 --temp-folder=/Users/idayeon/Desktop/Capstone_proj_Fall2025/Capston_proj2/Temp/Burst
---key-folder=/Applications/Unity/Hub/Editor/2022.3.62f1/PlaybackEngines/AndroidPlayer
+--key-folder=/Applications/Unity/Hub/Editor/2022.3.62f2/PlaybackEngines/AndroidPlayer
 --decode-folder=/Users/idayeon/Desktop/Capstone_proj_Fall2025/Capston_proj2/Library/Burst
 --output=/Users/idayeon/Desktop/Capstone_proj_Fall2025/Capston_proj2/Temp/BurstOutput/tempburstlibs/arm64-v8a/lib_burst_generated
 --pdb-search-paths=Temp/ManagedSymbols/
@@ -28,7 +28,7 @@ Library: /Users/idayeon/Desktop/Capstone_proj_Fall2025/Capston_proj2/Temp/BurstO
 --target-framework=NetFramework
 --generate-link-xml=Temp/burst.link.xml
 --temp-folder=/Users/idayeon/Desktop/Capstone_proj_Fall2025/Capston_proj2/Temp/Burst
---key-folder=/Applications/Unity/Hub/Editor/2022.3.62f1/PlaybackEngines/AndroidPlayer
+--key-folder=/Applications/Unity/Hub/Editor/2022.3.62f2/PlaybackEngines/AndroidPlayer
 --decode-folder=/Users/idayeon/Desktop/Capstone_proj_Fall2025/Capston_proj2/Library/Burst
 --output=/Users/idayeon/Desktop/Capstone_proj_Fall2025/Capston_proj2/Temp/BurstOutput/tempburstlibs/arm64-v8a/lib_burst_generated
 --pdb-search-paths=Temp/ManagedSymbols/

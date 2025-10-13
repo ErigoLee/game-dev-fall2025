@@ -53,17 +53,38 @@ public class HandJointLoadManager : MonoBehaviour
 
         try
         {
+
             // Load and deserialize left hand gesture data
-            string leftHandGestureDataJson = File.ReadAllText(Application.dataPath + "/Scripts/leftdata.json");
-            leftHandGesture = JsonHelper.FromJson<HandGestureData>(leftHandGestureDataJson);
+            //string leftHandGestureDataJson = File.ReadAllText(Application.dataPath + "/Scripts/leftdata.json");
+            //string leftHandGestureDataJson = File.ReadAllText(Application.dataPath + "/Resources/leftdata.json");
+            //leftHandGesture = JsonHelper.FromJson<HandGestureData>(leftHandGestureDataJson);
 
             // Load and deserialize right hand gesture data
-            string rightHandGestureDataJson = File.ReadAllText(Application.dataPath + "/Scripts/rightdata.json");
-            rightHandGesture = JsonHelper.FromJson<HandGestureData>(rightHandGestureDataJson);
+            //string rightHandGestureDataJson = File.ReadAllText(Application.dataPath + "/Scripts/rightdata.json");
+            //string rightHandGestureDataJson = File.ReadAllText(Application.dataPath + "/Resources/rightdata.json");
+            //rightHandGesture = JsonHelper.FromJson<HandGestureData>(rightHandGestureDataJson);
 
-            // Invoke events to notify subscribers
-            LoadLeftHandGestureData?.Invoke(leftHandGesture);
-            LoadRightHandGestureData?.Invoke(rightHandGesture);
+            TextAsset jsonFileLeft = Resources.Load<TextAsset>("leftdata");
+            if(jsonFileLeft != null)
+            {
+                string leftHandGestureDataJson = jsonFileLeft.text;
+                leftHandGesture = JsonHelper.FromJson<HandGestureData>(leftHandGestureDataJson);
+                // Invoke events to notify subscribers
+                LoadLeftHandGestureData?.Invoke(leftHandGesture);
+            }
+
+
+            TextAsset jsonFileRight = Resources.Load<TextAsset>("rightdata");
+            if(jsonFileRight != null)
+            {
+                string rightHandGestureDataJson = jsonFileRight.text;
+                rightHandGesture = JsonHelper.FromJson<HandGestureData>(rightHandGestureDataJson);
+                // Invoke events to notify subscribers
+                LoadRightHandGestureData?.Invoke(rightHandGesture);
+            }
+
+            
+            
 
             Debug.Log($"Successfully loaded {leftHandGesture.Count} left hand gestures and {rightHandGesture.Count} right hand gestures.");
         }
