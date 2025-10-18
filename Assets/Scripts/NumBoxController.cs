@@ -11,6 +11,7 @@ public class NumBoxController : MonoBehaviour
     private Quaternion initRot;
 
     public int GetNumBoxNumber => numBoxNumber;
+
     // Start is called before the first frame update
 
     private void Start()
@@ -27,5 +28,13 @@ public class NumBoxController : MonoBehaviour
             transform.position = initPos;
             transform.rotation = initRot;
         }
+    }
+
+    public void MoveInitalPlace()
+    {
+        gameObject.SetActive(false);
+        transform.position = initPos;
+        transform.rotation = initRot;
+        gameObject.SetActive(true);
     }
 }
