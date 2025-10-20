@@ -3310,6 +3310,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cube_1
       objectReference: {fileID: 0}
+    - target: {fileID: 2027533344547198161, guid: 84c4985a4bd7a4b4d92555235c3e44f1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7194373110426389497, guid: 84c4985a4bd7a4b4d92555235c3e44f1,
         type: 3}
       propertyPath: _rigidbody
@@ -28031,6 +28036,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cube_1
       objectReference: {fileID: 0}
+    - target: {fileID: 2027533344547198161, guid: 84c4985a4bd7a4b4d92555235c3e44f1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7194373110426389497, guid: 84c4985a4bd7a4b4d92555235c3e44f1,
         type: 3}
       propertyPath: _rigidbody
@@ -32683,7 +32693,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1033084444
 Transform:
   m_ObjectHideFlags: 0
@@ -50090,6 +50100,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Cube_2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3263158895038571615, guid: b05bf7121567d4bda9e1ed4c7eca8096,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4403721960692878527, guid: b05bf7121567d4bda9e1ed4c7eca8096,
         type: 3}

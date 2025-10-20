@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: -527683867103593596}
   - component: {fileID: -2666870119444559674}
   m_Layer: 0
-  m_Name: Cube_3
+  m_Name: RedBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
