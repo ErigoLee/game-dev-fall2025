@@ -9,6 +9,7 @@ public class PooledObject : MonoBehaviour
 
     public void Release()
     {
+        Debug.Log("Pool is "+pool);
         pool.ReturnToPool(this);
     }
 }

@@ -54,9 +54,10 @@ public class ObjectPool : MonoBehaviour
         // if the pool is not large enough, instantiate extra PooledObjects
         if (stack.Count == 0)
         {
-            PooledObject newInstance = Instantiate(objectToPool);
-            newInstance.Pool = this;
-            return newInstance;
+            //PooledObject newInstance = Instantiate(objectToPool);
+            //newInstance.Pool = this;
+            //return newInstance;
+            return null;
         }
 
         // otherwise, just grab the next one from the list
@@ -68,7 +69,11 @@ public class ObjectPool : MonoBehaviour
     // returns the GameObject to the pool
     public void ReturnToPool(PooledObject pooledObject)
     {
-        stack.Push(pooledObject);
-        pooledObject.gameObject.SetActive(false);
+        if (pooledObject != null)
+        {
+            stack.Push(pooledObject);
+            pooledObject.gameObject.SetActive(false);
+        }
+        
     }
 }
