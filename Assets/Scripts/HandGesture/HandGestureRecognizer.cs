@@ -95,6 +95,9 @@ public class HandGestureRecognizer : MonoBehaviour
     [SerializeField]
     public UnityEvent<HandGestureData, HandGestureData> BothHandGestureAction;
 
+
+    
+
     /// <summary>
     /// Threshold for matching joint positions between current hand and predefined gestures.
     /// Lower values require more precise matching; higher values allow more tolerance.
@@ -106,6 +109,8 @@ public class HandGestureRecognizer : MonoBehaviour
 
 
     public static event Action<HandGestureData, HandGestureData> ConveyHandGestures;
+
+    public static event Action<HandGestureData, HandGestureData> ConveyRightHandGesture;
 
     /// <summary>
     /// Initializes the gesture recognizer.
@@ -213,6 +218,10 @@ public class HandGestureRecognizer : MonoBehaviour
             GetGestureData(leftHand);
             GetGestureData(rightHand);
             TriggerDualGesture();
+
+            ConveyHandGestures?.Invoke(currentLeftHandGesture, currentRightHandGesture);
+            ConveyRightHandGesture?.Invoke(currentRightHandGesture, preRightHandGesture);
+
             // Store current gestures as previous for the next frame
             // Ensure deep copy to avoid reference issues
             if (currentLeftHandGesture != null)
@@ -225,8 +234,6 @@ public class HandGestureRecognizer : MonoBehaviour
                 preRightHandGesture.name = currentRightHandGesture.name;
                 preRightHandGesture.jointPositions = new List<Vector3>(currentRightHandGesture.jointPositions); // Deep copy
             }
-
-            ConveyHandGestures?.Invoke(currentLeftHandGesture, currentRightHandGesture);
         }
 
     }

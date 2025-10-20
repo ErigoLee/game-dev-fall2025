@@ -9,7 +9,7 @@ public class GestureObjectFactory : MonoBehaviour
     [SerializeField] private GameObject player;
     [SerializeField] private Factory[] m_factories;
 
-    private float m_DistanceLimit = 5f;
+    private float m_DistanceLimit = 1.25f;
 
     // List to track all created products
     private List<GameObject> m_CreatedProducts = new List<GameObject>();
@@ -39,6 +39,7 @@ public class GestureObjectFactory : MonoBehaviour
         }
 
     }
+
 
     private void OnDestroy()
     {

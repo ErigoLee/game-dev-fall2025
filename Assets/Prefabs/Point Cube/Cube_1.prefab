@@ -14,7 +14,8 @@ GameObject:
   - component: {fileID: 4445545976913328021}
   - component: {fileID: 2760429566633346113}
   - component: {fileID: 8191187147845831088}
-  - component: {fileID: 1222754217409454696}
+  - component: {fileID: -2978506721309088332}
+  - component: {fileID: 2717271738739188752}
   m_Layer: 0
   m_Name: Cube_1
   m_TagString: Untagged
@@ -131,8 +132,8 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 0
-  m_IsKinematic: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -158,7 +159,7 @@ MonoBehaviour:
   _rigidbody: {fileID: 2760429566633346113}
   _kinematicWhileSelected: 1
   _throwWhenUnselected: 1
---- !u!114 &1222754217409454696
+--- !u!114 &-2978506721309088332
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -167,10 +168,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 2027533344547198161}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a43bc1ea03ab645dabc4389ab9fd43be, type: 3}
+  m_Script: {fileID: 11500000, guid: c87a62e4d4f8b4eb2a871b1eee9cf342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_ProductName: ProductA
+--- !u!114 &2717271738739188752
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2027533344547198161}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a478293cba2641838e41cb1e9395437, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_BoxName: LightBlue
 --- !u!1 &3650589330960252223
 GameObject:
   m_ObjectHideFlags: 0
