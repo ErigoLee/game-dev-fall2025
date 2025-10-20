@@ -35,19 +35,31 @@ public class GestureDectectorObjectPool : MonoBehaviour
             switch(gestureType)
             {
                 case GestureType.Rock:
-                    GameObject orangeObj = orangeObjectPool.GetPooledObject().gameObject;
-                    orangeObj.SetActive(true);
-                    orangeObj.transform.SetPositionAndRotation(spawnPos,spawnRot);
+                    PooledObject orangePooledObject = orangeObjectPool.GetPooledObject();
+                    if (orangePooledObject != null)
+                    {
+                        GameObject orangeObj = orangePooledObject.gameObject;
+                        orangeObj.SetActive(true);
+                        orangeObj.transform.SetPositionAndRotation(spawnPos, spawnRot);
+                    }
                     break;
                 case GestureType.Paper:
-                    GameObject redObj = redObjectPool.GetPooledObject().gameObject;
-                    redObj.SetActive(true);
-                    redObj.transform.SetPositionAndRotation(spawnPos, spawnRot);
+                    PooledObject redPooledObject = redObjectPool.GetPooledObject();
+                    if(redPooledObject != null)
+                    {
+                        GameObject redObj = redPooledObject.gameObject;
+                        redObj.SetActive(true);
+                        redObj.transform.SetPositionAndRotation(spawnPos, spawnRot);
+                    }
                     break;
                 case GestureType.Scissors:
-                    GameObject lightBlueObj = lightBlueObjectPool.GetPooledObject().gameObject;
-                    lightBlueObj.SetActive(true);
-                    lightBlueObj.transform.SetPositionAndRotation(spawnPos, spawnRot);
+                    PooledObject lightBluePooledObject = lightBlueObjectPool.GetPooledObject();        
+                    if(lightBluePooledObject != null)
+                    {
+                        GameObject lightBlueObj = lightBluePooledObject.gameObject;
+                        lightBlueObj.SetActive(true);
+                        lightBlueObj.transform.SetPositionAndRotation(spawnPos, spawnRot);
+                    }
                     break;
             }
         }

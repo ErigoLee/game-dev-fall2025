@@ -17,6 +17,7 @@ public class CoordinateColliderController : MonoBehaviour
         BaseBox box = other.GetComponent(typeof(BaseBox)) as BaseBox;
         if (box != null)
         {
+            Debug.Log("BaseBox: "+box.BoxName);
             if (((xPos == 1 && yPos == 1) || (xPos == 4 && yPos == 1) || (xPos == 1 && yPos==4))&&(string.Equals(box.BoxName, "LightBlue")))
             {
                 answerCube.SetActive(true);

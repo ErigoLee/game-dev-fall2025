@@ -7,7 +7,7 @@ public class LightBlueBox : BaseBox
 {
     [SerializeField]
     private string m_BoxName = "LightBlue";
-    public new string BoxName { get => m_BoxName; set => m_BoxName = value; }
+    public override string BoxName { get => m_BoxName; set => m_BoxName = value; }
 
     // reference to the PooledObject component so we can return to the pool
     private PooledObject pooledObject;
