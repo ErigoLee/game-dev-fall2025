@@ -1,7 +1,7 @@
 # Assignment 1 - Unity Review: Pacman
 **Branch version:** `Assign1`</br>
 This branch contains the Pacman project for **Assignment 1 (Unity Review)**. </br>
-https://github.com/ErigoLee/game-dev-fall2025-Pacman/tree/Version1</br>
+https://github.com/ErigoLee/game-dev-fall2025/blob/Assign1</br>
 
 **Game Description**
 - The enemy moves using NavMesh and is coded to avoid obstacles.
@@ -17,7 +17,7 @@ https://erigolee.github.io/game-dev-fall2025-Pacman/Pacman_Builds/
 # Assignment - 2 OOP Inventory
 **Branch version:** `Assign2`</br>
 
-[https://github.com/ErigoLee/game-dev-fall2025-Pacman/tree/Version2?tab=readme-ov-file](https://github.com/ErigoLee/game-dev-fall2025/tree/Assign2)
+https://github.com/ErigoLee/game-dev-fall2025/tree/Assign2
 
 This branch contains the Pacman project for **Assignment 2 OOP Inventory**. </br>
 **Play the Game** </br>
