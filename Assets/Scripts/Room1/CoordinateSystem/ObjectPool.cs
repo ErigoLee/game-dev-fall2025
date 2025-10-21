@@ -51,12 +51,16 @@ public class ObjectPool : MonoBehaviour
             return null;
         }
 
-        // if the pool is not large enough, instantiate extra PooledObjects
+        //If stack == 0, it means there are no reusable objects available, so the method returns null.
+        //A new PooledObject is not instantiated to prevent infinite object creation.
         if (stack.Count == 0)
         {
+            // if the pool is not large enough, instantiate extra PooledObjects
             //PooledObject newInstance = Instantiate(objectToPool);
             //newInstance.Pool = this;
             //return newInstance;
+
+            //Return null if no objects are available (to prevent infinite growth)
             return null;
         }
 

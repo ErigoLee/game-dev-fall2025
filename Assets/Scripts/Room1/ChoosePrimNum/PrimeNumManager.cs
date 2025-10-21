@@ -5,7 +5,8 @@ using UnityEngine;
 
 public class PrimeNumManager : MonoBehaviour
 {
-    [SerializeField] private GameObject successPanel;
+    [SerializeField] private GameObject questExclamation;
+    [SerializeField] private GameObject puzzleObj;
     private bool isFinished = false;
     private Dictionary<int,bool> clickedPrimeNum = new Dictionary<int, bool> ();
     void Start()
@@ -26,7 +27,8 @@ public class PrimeNumManager : MonoBehaviour
             if (allTrue)
             {
                 isFinished = true;
-                successPanel.SetActive(true);
+                questExclamation.SetActive(false);
+                puzzleObj.SetActive(true);
             }
         }
     }

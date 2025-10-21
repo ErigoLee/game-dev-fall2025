@@ -64,6 +64,7 @@ public class HandJointLoadManager : MonoBehaviour
             //string rightHandGestureDataJson = File.ReadAllText(Application.dataPath + "/Resources/rightdata.json");
             //rightHandGesture = JsonHelper.FromJson<HandGestureData>(rightHandGestureDataJson);
 
+            // Load left hand data from Resources folder
             TextAsset jsonFileLeft = Resources.Load<TextAsset>("leftdata");
             if(jsonFileLeft != null)
             {
@@ -73,7 +74,7 @@ public class HandJointLoadManager : MonoBehaviour
                 LoadLeftHandGestureData?.Invoke(leftHandGesture);
             }
 
-
+            // Load right hand data from Resources folder
             TextAsset jsonFileRight = Resources.Load<TextAsset>("rightdata");
             if(jsonFileRight != null)
             {
@@ -82,10 +83,7 @@ public class HandJointLoadManager : MonoBehaviour
                 // Invoke events to notify subscribers
                 LoadRightHandGestureData?.Invoke(rightHandGesture);
             }
-
-            
-            
-
+            // Log the number of loaded gestures for debugging
             Debug.Log($"Successfully loaded {leftHandGesture.Count} left hand gestures and {rightHandGesture.Count} right hand gestures.");
         }
         catch (FileNotFoundException ex)

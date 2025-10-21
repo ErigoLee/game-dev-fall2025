@@ -6,7 +6,9 @@ using Oculus.Interaction.Input;
 
 public class EquationManager : MonoBehaviour
 {
-    [SerializeField] private GameObject successPanel;
+    [SerializeField] private GameObject questExclamation;
+    [SerializeField] private GameObject puzzleObj;
+    [SerializeField] private GameObject[] arrows;
     [SerializeField] private GameObject failurePanel;
     [SerializeField] private float disableDelay = 2f;
     private int tokenCount;
@@ -44,7 +46,12 @@ public class EquationManager : MonoBehaviour
             if (tokenCount == answerTokenCount)
             {
                 isFinished = true;
-                successPanel.SetActive(true);
+                questExclamation.SetActive(false);
+                puzzleObj.SetActive(true);
+                foreach(GameObject arrow in arrows)
+                {
+                    arrow.SetActive(false);
+                }
             }
             else
             {

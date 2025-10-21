@@ -10,7 +10,7 @@ public class PokeInteraction : MonoBehaviour
     [SerializeField] private Material activeMat;
 
     private bool isPoke;
-    [SerializeField] private Renderer renderer;
+    [SerializeField] private new Renderer renderer;
     // Start is called before the first frame update
     void Start()
     {

@@ -5,7 +5,9 @@ using UnityEngine;
 
 public class FindTheAreaManager : MonoBehaviour
 {
-    [SerializeField] private GameObject successPanel;
+    [SerializeField] private GameObject numberCubeArrow;
+    [SerializeField] private GameObject questExclamation;
+    [SerializeField] private GameObject puzzleObj;
     private Dictionary<int, bool> hasSolvedQustions = new Dictionary<int, bool>();
     private bool isFinished = false;
 
@@ -25,7 +27,9 @@ public class FindTheAreaManager : MonoBehaviour
             if (allTrue)
             {
                 isFinished = true;
-                successPanel.SetActive(true);
+                numberCubeArrow.SetActive(false);
+                questExclamation.SetActive(false);
+                puzzleObj.SetActive(true);
             }
         }
     }

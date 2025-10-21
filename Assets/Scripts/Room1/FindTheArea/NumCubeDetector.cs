@@ -9,6 +9,7 @@ public class NumCubeDetector : MonoBehaviour
     [SerializeField] private int question = 1;
     [SerializeField] private GameObject particle;
     [SerializeField] private GameObject answerCube;
+    [SerializeField] private GameObject questionPointer;
     [SerializeField] private float disableDelay = 2f;
     private int answer = 0;
     private bool isFinished = false;
@@ -31,6 +32,7 @@ public class NumCubeDetector : MonoBehaviour
                 IsSolve?.Invoke(question);
                 particle.SetActive(true);
                 answerCube.SetActive(true);
+                questionPointer.SetActive(false);
                 numcube.MoveInitalPlace();
                 StartCoroutine(DeactiveAfterDelay());
 

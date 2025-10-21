@@ -6,7 +6,8 @@ public class AdjustAngleManager : MonoBehaviour
 {
     [SerializeField] private GameObject playerObj;
     [SerializeField] private GameObject basePositionObj;
-    [SerializeField] private GameObject successPanel;
+    [SerializeField] private GameObject questExclamation;
+    [SerializeField] private GameObject puzzleObj;
     private Vector3 playerPos;
     Vector3 basePositionPos;
     private bool isFinished = false;
@@ -50,7 +51,8 @@ public class AdjustAngleManager : MonoBehaviour
             if(string.Equals(currentRightGesture.name,"Four"))
             {
                 isFinished = true;
-                successPanel.SetActive(true);
+                questExclamation.SetActive(false);
+                puzzleObj.SetActive(true);
             }
         }
     }

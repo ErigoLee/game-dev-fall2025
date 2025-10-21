@@ -221,7 +221,6 @@ public class HandJointSave : MonoBehaviour
 
     public string ComparerPose()
     {
-        float threshold = 0.05f;
 
         if (pos.Count == checkingpos.Count)
         {

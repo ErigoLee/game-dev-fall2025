@@ -8,7 +8,9 @@ using UnityEngine.Events;
 /// <summary>
 /// Recognizes hand gestures for both left and right hands using Oculus Interaction SDK.
 /// Compares joint positions against predefined gesture data and invokes events when gestures are detected.
+/// Requires a HandJointLoadManager component on the same GameObject to function properly.
 /// </summary>
+[RequireComponent(typeof(HandJointLoadManager))]
 public class HandGestureRecognizer : MonoBehaviour
 {
     /// <summary>
@@ -91,12 +93,12 @@ public class HandGestureRecognizer : MonoBehaviour
     [Tooltip("Event triggered when a right hand gesture is detected. Add listeners in the Inspector.")]
     public UnityEvent<HandGestureData, bool> RightHandGestureAction;
 
-
+    /// <summary>
+    /// A Unity event that conveys hand gesture data for both hands.
+    /// Allows custom actions to be assigned in the Unity editor.
+    /// </summary>
     [SerializeField]
     public UnityEvent<HandGestureData, HandGestureData> BothHandGestureAction;
-
-
-    
 
     /// <summary>
     /// Threshold for matching joint positions between current hand and predefined gestures.
@@ -107,9 +109,19 @@ public class HandGestureRecognizer : MonoBehaviour
     [Range(0.01f, 0.2f)]
     private float threshold = 0.05f;
 
-
+    /// <summary>
+    /// Static event that conveys hand gesture data for both hands.
+    /// The first parameter represents the **left hand** data, and the second represents the **right hand** data.
+    /// Subscribed methods will receive current gesture data for processing.
+    /// </summary>
     public static event Action<HandGestureData, HandGestureData> ConveyHandGestures;
 
+    /// <summary>
+    /// Static event that conveys hand gesture data specifically for the right hand.
+    /// The first parameter represents the **current right-hand** gesture data,
+    /// and the second parameter represents the **previous frame's right-hand** gesture data.
+    /// Subscribed methods will receive gesture data for the right hand.
+    /// </summary>
     public static event Action<HandGestureData, HandGestureData> ConveyRightHandGesture;
 
     /// <summary>
@@ -211,14 +223,21 @@ public class HandGestureRecognizer : MonoBehaviour
     /// </summary>
     void Update()
     {
+        // Check if both left and right hand data are loaded before proceeding
         if (isLoadingRight && isLoadingLeft)
         {
+            // Initialize new instances for current gesture data
             currentLeftHandGesture = new HandGestureData();
             currentRightHandGesture = new HandGestureData();
+
+            // Retrieve gesture data for both hands
             GetGestureData(leftHand);
             GetGestureData(rightHand);
+
+            // Trigger any dual-hand gestures based on the current data
             TriggerDualGesture();
 
+            // Invoke static events to convey gesture data to subscribers
             ConveyHandGestures?.Invoke(currentLeftHandGesture, currentRightHandGesture);
             ConveyRightHandGesture?.Invoke(currentRightHandGesture, preRightHandGesture);
 
@@ -226,11 +245,13 @@ public class HandGestureRecognizer : MonoBehaviour
             // Ensure deep copy to avoid reference issues
             if (currentLeftHandGesture != null)
             {
+                // Copy the name and perform a deep copy of joint positions for left hand
                 preLeftHandGesture.name = currentLeftHandGesture.name;
                 preLeftHandGesture.jointPositions = new List<Vector3>(currentLeftHandGesture.jointPositions); // Deep copy
             }
             if (currentRightHandGesture != null)
             {
+                // Copy the name and perform a deep copy of joint positions for right hand
                 preRightHandGesture.name = currentRightHandGesture.name;
                 preRightHandGesture.jointPositions = new List<Vector3>(currentRightHandGesture.jointPositions); // Deep copy
             }
@@ -344,40 +365,52 @@ public class HandGestureRecognizer : MonoBehaviour
     /// <param name="handGestures">List of predefined gesture data for this hand.</param>
     private void HandGestureDetector(Hand hand, HandGestureData currentHandGesture, List<HandGestureData> handGestures)
     {
+        // Proceed only if the hand is not null
         if (hand != null)
         {
-            bool isSuccessful = false;
+            bool isSuccessful = false; // Flag to track if a gesture match was found
+
+            // Loop through each predefined gesture to find a match
             foreach (HandGestureData gesture in handGestures)
             {
+                // Ensure the joint position counts match before comparing
                 if (gesture.jointPositions.Count == currentHandGesture.jointPositions.Count)
                 {
-                    bool flag = true;
+                    bool flag = true; // Flag for this gesture comparison
+
+                    // Compare each joint position
                     for (int i = 0; i < gesture.jointPositions.Count; i++)
                     {
-                        Vector3 _pos = gesture.jointPositions[i];
-                        Vector3 _pos2 = currentHandGesture.jointPositions[i];
-                        float distance = Vector3.Distance(_pos, _pos2);
+                        Vector3 _pos = gesture.jointPositions[i]; // Predefined joint position
+                        Vector3 _pos2 = currentHandGesture.jointPositions[i]; // Current joint position
+                        float distance = Vector3.Distance(_pos, _pos2); // Calculate distance
+
+                        // If distance exceeds threshold, this gesture doesn't match
                         if (distance > threshold)
                         {
                             flag = false;
-                            break;
+                            break; // Exit the inner loop early
                         }
                     }
+
+                    // If all joints matched, mark as successful and set the gesture name
                     if (flag)
                     {
                         isSuccessful = true;
                         currentHandGesture.name = gesture.name;
-                        break;
+                        break; // Exit the outer loop since a match was found
                     }
 
                 }
             }
+
+            // If a gesture was successfully detected, invoke the appropriate event
             if (isSuccessful)
             {
                 // Invoke the correct event based on the hand
                 if (currentHandGesture == currentLeftHandGesture)
                 {
-                    LeftHandGestureAction.Invoke(currentHandGesture, true);
+                    LeftHandGestureAction.Invoke(currentLeftHandGesture, true);
                 }
                 else if (currentHandGesture == currentRightHandGesture)
                 {
@@ -385,6 +418,7 @@ public class HandGestureRecognizer : MonoBehaviour
                 }
                 else
                 {
+                    // Log a warning if the gesture doesn't match expected references
                     Debug.LogWarning($"[HandGestureDetector] currentHandGesture does not match left/right buffers " + $"(ref mismatch). Is it a new instance? leftRef={(currentLeftHandGesture != null)}, " + $"rightRef={(currentRightHandGesture != null)}, curCount={currentHandGesture?.jointPositions?.Count}");
                 }
 
@@ -393,11 +427,16 @@ public class HandGestureRecognizer : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Triggers a dual-hand gesture event if both hands have recognized gestures.
+    /// </summary>
     private void TriggerDualGesture()
     {
+        // Return early if either hand gesture is empty (not recognized)
         if (string.Equals(currentLeftHandGesture, "") || string.Equals(currentRightHandGesture, ""))
             return;
 
+        // Invoke the event for both-hand gestures
         BothHandGestureAction.Invoke(currentLeftHandGesture,currentRightHandGesture);
     }
 }

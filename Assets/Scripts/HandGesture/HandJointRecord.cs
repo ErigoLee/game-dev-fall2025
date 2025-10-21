@@ -6,15 +6,34 @@ using UnityEngine.Events;
 using System.Linq;
 using System; // For cleaner enum filtering
 
+/// <summary>
+/// This script records hand joint positions using Oculus Interaction components.
+/// It allows recording for either the left or right hand exclusively and saves the data for gesture recognition.
+/// </summary>
+[RequireComponent(typeof(HandJointSaveManager))]
 public class HandJointRecord : MonoBehaviour
 {
+    /// <summary>
+    /// Reference to the left hand tracking component.
+    /// </summary>
     [Tooltip("Reference to the left hand tracking component.")]
     [SerializeField] private Hand _leftHand;
+
+    /// <summary>
+    /// Reference to the right hand tracking component.
+    /// </summary>
     [Tooltip("Reference to the right hand tracking component.")]
     [SerializeField] private Hand _rightHand;
 
+    /// <summary>
+    /// If true, joint data will be recorded for the left hand.
+    /// </summary>
     [Tooltip("If true, joint data will be recorded for the left hand.")]
     [SerializeField] private bool _isLeftHandActive = false;
+
+    /// <summary>
+    /// If true, joint data will be recorded for the right hand.
+    /// </summary>
     [Tooltip("If true, joint data will be recorded for the right hand.")]
     [SerializeField] private bool _isRightHandActive = false;
 
@@ -25,11 +44,9 @@ public class HandJointRecord : MonoBehaviour
     // After gesture data is obtained, it will be passed to GestureJointSaveManger.
     public static event Action<HandGestureData, bool> ConveyGestureData;
 
-    // This threshold seems unused in the provided code.
-    // If it's for future use (e.g., for filtering similar poses), keep it.
-    // private float _threshold = 0.05f;
-
-    // This runs automatically whenever values are changed in the Inspector
+    /// <summary>
+    /// Ensures mutual exclusivity between left and right hand activation in the Inspector.
+    /// </summary>
     private void OnValidate()
     {
         // Enforce mutual exclusivity in the Inspector
@@ -47,7 +64,9 @@ public class HandJointRecord : MonoBehaviour
         }
     }
 
-    // Runtime properties (same logic applies when changed in code)
+    /// <summary>
+    /// Gets or sets whether the right hand is active, ensuring mutual exclusivity.
+    /// </summary>
     public bool IsRightHandActive
     {
         get => _isRightHandActive;
@@ -58,6 +77,9 @@ public class HandJointRecord : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Gets or sets whether the left hand is active, ensuring mutual exclusivity.
+    /// </summary>
     public bool IsLeftHandActive
     {
         get => _isLeftHandActive;
@@ -68,11 +90,15 @@ public class HandJointRecord : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Updates the script each frame, checking for space key input to record joint data.
+    /// </summary>
     void Update()
     {
         // Only allow recording if one hand is explicitly active
         if (_isRightHandActive || _isLeftHandActive)
         {
+            // Check for space key press to initiate recording
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 // Call the unified storage method based on which hand is active
@@ -94,18 +120,21 @@ public class HandJointRecord : MonoBehaviour
     /// <param name="handToStore">The Hand component from which to get joint data.</param>
     private void StoreHandJoints(Hand handToStore)
     {
+        // Check if the hand reference is valid
         if (handToStore == null)
         {
             Debug.LogError("Attempted to store hand joints from a null Hand reference.");
             return;
         }
 
+        // Proceed only if hand tracking data is valid
         if (handToStore.IsTrackedDataValid)
         {
-            _recordedJointPositions.Clear(); // Clear previous data to store the new snapshot
+            // Clear previous data to store the new snapshot
+            _recordedJointPositions.Clear();
 
-            //1. GetRootPose()
-            if(!handToStore.GetRootPose(out Pose rootPose))
+            // Attempt to get the root pose of the hand
+            if (!handToStore.GetRootPose(out Pose rootPose))
             {
                 Debug.Log("Failed to get root pose!");
                 return;
@@ -119,9 +148,10 @@ public class HandJointRecord : MonoBehaviour
                                                          .Cast<HandJointId>()
                                                          .Where(joint => System.Enum.IsDefined(typeof(HandJointId), joint));
 
+            // Iterate through each joint ID
             foreach (HandJointId joint in allJointIds)
             {
-                //Filters out invalid (undefined) values
+                // Skip invalid or undefined joint values
                 if (string.Equals(joint.ToString(), "HandEnd") || string.Equals(joint.ToString(),"Invalid"))
                 {
                     //skip if the value is invalid (or print a log message)
@@ -130,11 +160,13 @@ public class HandJointRecord : MonoBehaviour
                 }
                 try
                 {
+                    // Attempt to get the pose for this joint
                     if (handToStore.GetJointPose(joint, out Pose pose))
                     {
-                        // Get position relative to the hand's transform
+                        // Calculate position relative to the hand's root pose
                         Vector3 relativePos = pose.position - rootPose.position;
                         Vector3 localPos = Quaternion.Inverse(rootPose.rotation) * relativePos;
+                        // Add the local position to the recorded list
                         _recordedJointPositions.Add(localPos);
                     }
                     else
@@ -156,8 +188,10 @@ public class HandJointRecord : MonoBehaviour
         {
             Debug.LogWarning($"Cannot store joint data for {handToStore.gameObject.name} because its tracking data is not valid.");
         }
-        //ReadingPose();
+
+        // Create a new HandGestureData object with the recorded positions
         HandGestureData newHandGesture = new HandGestureData("newGesture", _recordedJointPositions);
+        // Invoke the event based on which hand is active
         if (IsLeftHandActive)
         {
             ConveyGestureData?.Invoke(newHandGesture, true);
@@ -174,16 +208,20 @@ public class HandJointRecord : MonoBehaviour
     /// <summary>
     /// Returns the last recorded list of hand joint positions.
     /// </summary>
+    /// <returns>A read-only list of recorded joint positions.</returns>
     public IReadOnlyList<Vector3> GetRecordedJointPositions()
     {
         return _recordedJointPositions;
     }
 
 
-    //Debug only
+    /// <summary>
+    /// Debug method to log the recorded joint positions.
+    /// </summary>
     public void ReadingPose()
     {
         int i = 0;
+        // Iterate through each recorded position and log it
         foreach (Vector3 _pos in _recordedJointPositions)
         {
             Debug.Log(i + ": x-" + _pos.x + " y-" + _pos.y + " z-" + _pos.z);
