@@ -4,8 +4,19 @@ As a result, some commits were accidentally attributed to a different user (e.g.
 Since removing that contributor would also delete important commits from the project’s history, the contributor entry has been intentionally **left as is**.
 
 
-## Coordinate System
+# Assignment 1 - Unity Review: Pacman
+**Branch version:** `Assign1`</br>
 
+# Assignment - 2 OOP Inventory
+**Branch version:** `Assign2`</br>
+
+# Assignment - 3
+**Branch version:** `Assign3`</br>
+**Branch version:** `Assign3-1`</br>
+**Branch version:** `main`</br>
+
+## Coordinate System
+**Branch version:** `Assign3` & `main` </br>
 In the Coordinate System section, an Object Pool was implemented.
 Within a certain distance, when the user performs rock, scissors, or paper gestures, a red box, orange box, or light blue box is generated respectively.
 A total of three boxes are created for each color. When a box falls or is placed in another coordinate, it becomes deactivated and recycled through the Object Pool.
@@ -74,6 +85,40 @@ GestureDectectorObjectPool.cs
                     break;
             }
 ```
+
+### Coordinate System – Factory Pattern (Before Using Object Pool)
+**Branch version:** `Assign3-1` </br>
+
+Before implementing the **Object Pool**, the **Factory Pattern** was used in the *Coordinate System* to handle object creation.  
+The mechanism worked in a similar way: when a specific gesture was recognized, an object was generated through the **Factory structure**.
+
+The following code snippet from `GestureObjectFactory.cs` demonstrates how this mechanism worked:
+
+```csharp
+public void GestureRecognized(GestureType gestureType)
+{
+    Vector3 playerPos = player.transform.position;
+    playerPos.y = 0;
+    Vector3 spawnPos = spawnPoint;
+    spawnPos.y = 0;
+    float distance = Vector3.Distance(playerPos, spawnPos);
+
+    if (GestureType.Scissors == gestureType && distance <= m_DistanceLimit)
+    {
+        Factory selectedFactory = m_factories[0];
+        IProduct product = selectedFactory.GetProduct(spawnPoint);
+
+        // Add the GameObject of the created product to the list
+        if (product is Component component)
+        {
+            m_CreatedProducts.Add(component.gameObject);
+        }
+    }
+}
+
+
+
+
 
 ## License 
 - All **source code** in this repository is licensed under the [MIT License](./LICENSE).
