@@ -119,10 +119,7 @@ public void GestureRecognized(GestureType gestureType)
         }
     }
 }
-
-
-
-
+```
 
 ## License 
 - All **source code** in this repository is licensed under the [MIT License](./LICENSE).
