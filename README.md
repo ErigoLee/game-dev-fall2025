@@ -1,3 +1,9 @@
+## Note on Contributors
+Because the Game Center uses a **shared desktop environment**, there were cases where Git was used while another account was still logged in.  
+As a result, some commits were accidentally attributed to a different user (e.g., **nathanPayson**).  
+Since removing that contributor would also delete important commits from the project’s history, the contributor entry has been intentionally **left as is**.
+
+
 ## Coordinate System
 
 In the Coordinate System section, an Object Pool was implemented.
