@@ -6,13 +6,13 @@ Since removing that contributor would also delete important commits from the pro
 
 # Assignment 1 - Unity Review: Pacman
 **Branch version:** `Assign1`</br>
-[Play the Game](https://erigolee.github.io/game-dev-fall2025-Pacman/Pacman_Builds/)
-[Description](https://github.com/ErigoLee/game-dev-fall2025/blob/Assign2/README.md)
+[Play the Game](https://erigolee.github.io/game-dev-fall2025-Pacman/Pacman_Builds/) </br>
+[Description](https://github.com/ErigoLee/game-dev-fall2025/blob/Assign2/README.md) </br>
 
 # Assignment - 2 OOP Inventory
 **Branch version:** `Assign2`</br>
-[Play the Game](https://erigolee.github.io/game-dev-fall2025-Pacman/Pacman_version2_Builds/)
-[Description](https://github.com/ErigoLee/game-dev-fall2025/blob/Assign2/README.md)
+[Play the Game](https://erigolee.github.io/game-dev-fall2025-Pacman/Pacman_version2_Builds/) </br>
+[Description](https://github.com/ErigoLee/game-dev-fall2025/blob/Assign2/README.md) </br>
 
 # Assignment - 3
 **Branch version:** `Assign3`</br>
