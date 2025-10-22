@@ -1,3 +1,74 @@
+## Coordinate System
+
+In the Coordinate System section, an Object Pool was implemented.
+Within a certain distance, when the user performs rock, scissors, or paper gestures, a red box, orange box, or light blue box is generated respectively.
+A total of three boxes are created for each color. When a box falls or is placed in another coordinate, it becomes deactivated and recycled through the Object Pool.
+The number of boxes does not exceed the amount specified in the initPoolSize variable of the Object Pool.
+If all pooled boxes are already active, no new boxes are generated.
+
+ObjectPool.cs
+```csharp
+// creates the pool (invoke when the lag is not noticeable)
+    private void SetupPool()
+    {
+        // missing objectToPool Prefab field
+        if (objectToPool == null)
+        {
+            return;
+        }
+
+        stack = new Stack<PooledObject>();
+
+        // populate the pool
+        PooledObject instance = null;
+
+        for (int i = 0; i < initPoolSize; i++)
+        {
+            instance = Instantiate(objectToPool);
+            instance.Pool = this;
+            instance.gameObject.SetActive(false);
+            stack.Push(instance);
+        }
+    }
+```
+GestureDectectorObjectPool.cs
+```csharp
+// Switch based on gesture type to spawn the corresponding object
+            switch (gestureType)
+            {
+                case GestureType.Rock:
+                    // Get an orange object from the pool
+                    PooledObject orangePooledObject = orangeObjectPool.GetPooledObject();
+                    if (orangePooledObject != null)
+                    {
+                        GameObject orangeObj = orangePooledObject.gameObject;
+                        orangeObj.SetActive(true); // Activate the object
+                        orangeObj.transform.SetPositionAndRotation(spawnPos, spawnRot); // Set position and rotation
+                    }
+                    break;
+                case GestureType.Paper:
+                    // Get a red object from the pool
+                    PooledObject redPooledObject = redObjectPool.GetPooledObject();
+                    if(redPooledObject != null)
+                    {
+                        GameObject redObj = redPooledObject.gameObject;
+                        redObj.SetActive(true); // Activate the object
+                        redObj.transform.SetPositionAndRotation(spawnPos, spawnRot); // Set position and rotation
+                    }
+                    break;
+                case GestureType.Scissors:
+                    // Get a light blue object from the pool
+                    PooledObject lightBluePooledObject = lightBlueObjectPool.GetPooledObject();        
+                    if(lightBluePooledObject != null)
+                    {
+                        GameObject lightBlueObj = lightBluePooledObject.gameObject;
+                        lightBlueObj.SetActive(true); // Activate the object
+                        lightBlueObj.transform.SetPositionAndRotation(spawnPos, spawnRot); // Set position and rotation
+                    }
+                    break;
+            }
+```
+
 ## License 
 - All **source code** in this repository is licensed under the [MIT License](./LICENSE).
 - Some code and assets are adapted from **Game Development II course materials**.
