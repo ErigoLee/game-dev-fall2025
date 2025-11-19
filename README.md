@@ -124,8 +124,8 @@ public void GestureRecognized(GestureType gestureType)
 # Assignment - 4 Shader Graphs
 **Branch version:** `Assign4`</br>
 
-<img width="1636" height="954" alt="image" src="https://github.com/user-attachments/assets/3e7e4cbe-4524-4f3a-9101-d6d8fff9c8d5" />
-<img width="1920" height="1003" alt="image" src="https://github.com/user-attachments/assets/de06efe3-cc69-4fd2-b4d4-a008407e7db9" />
+<img width="1636" height="954" alt="image" src="https://github.com/user-attachments/assets/3e7e4cbe-4524-4f3a-9101-d6d8fff9c8d5" /> </br>
+<img width="1920" height="1003" alt="image" src="https://github.com/user-attachments/assets/de06efe3-cc69-4fd2-b4d4-a008407e7db9" /> </br>
 **I created a water material using Shader Graph based on a video tutorial**
 
 
