@@ -17,7 +17,8 @@ Since removing that contributor would also delete important commits from the pro
 # Assignment - 3 Your Design Pattern
 **Branch version:** `Assign3`</br>
 **Branch version:** `Assign3-1`</br>
-**Branch version:** `main`</br>
+**Branch version:** `Assign3-2`</br>
+
 
 ## Coordinate System
 **Branch version:** `Assign3` & `main` </br>
@@ -91,7 +92,8 @@ GestureDectectorObjectPool.cs
 ```
 
 ### Coordinate System – Factory Pattern (Before Using Object Pool)
-**Branch version:** `Assign3-1` </br>
+**Branch version:** `main`</br>
+**Branch version:** `Assign4` </br>
 
 Before implementing the **Object Pool**, the **Factory Pattern** was used in the *Coordinate System* to handle object creation.  
 The mechanism worked in a similar way: when a specific gesture was recognized, an object was generated through the **Factory structure**.
