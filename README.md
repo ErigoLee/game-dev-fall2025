@@ -120,6 +120,14 @@ public void GestureRecognized(GestureType gestureType)
     }
 }
 ```
+**Branch version:** `Assign4` </br>
+# Assignment - 4 Shader Graphs
+**Branch version:** `Assign4`</br>
+
+<img width="1636" height="954" alt="image" src="https://github.com/user-attachments/assets/3e7e4cbe-4524-4f3a-9101-d6d8fff9c8d5" />
+<img width="1920" height="1003" alt="image" src="https://github.com/user-attachments/assets/de06efe3-cc69-4fd2-b4d4-a008407e7db9" />
+**I created a water material using Shader Graph based on a video tutorial.**
+
 
 ## License 
 - All **source code** in this repository is licensed under the [MIT License](./LICENSE).
@@ -147,6 +155,8 @@ public void GestureRecognized(GestureType gestureType)
  Source: https://assetstore.unity.com/packages/3d/props/free-treasure-chest-313268
 - Magic VFX-Ice (FREE) </br>
  Source: https://assetstore.unity.com/packages/vfx/particles/spells/magic-vfx-ice-free-170242
+- Stylized Environnement - Free Pack </br>
+ Source: https://assetstore.unity.com/packages/3d/environments/fantasy/stylized-environnement-free-pack-178090
 
 ### Reference link I used for 3D modeling
 - Puzzle: Jigsaw Puzzle Speed Modeling In Blender </br>
@@ -159,7 +169,8 @@ public void GestureRecognized(GestureType gestureType)
  Source: https://www.youtube.com/watch?v=1aNnERnHRZg
 - How to setup VR for META QUEST in Unity </br>
  Source: https://www.youtube.com/watch?v=NV9WzAfRFz4
-
+- 3D Stylized Water with Refraction and Foam Shader Graph - Unity Tutorial
+ Source: https://www.youtube.com/watch?v=MHdDUqJHJxM
 ### Here’s a useful reference video on how to set up hand tracking in Unity: </br>
  Source: https://www.youtube.com/watch?v=NV9WzAfRFz4
  
