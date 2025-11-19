@@ -126,7 +126,7 @@ public void GestureRecognized(GestureType gestureType)
 
 <img width="1636" height="954" alt="image" src="https://github.com/user-attachments/assets/3e7e4cbe-4524-4f3a-9101-d6d8fff9c8d5" />
 <img width="1920" height="1003" alt="image" src="https://github.com/user-attachments/assets/de06efe3-cc69-4fd2-b4d4-a008407e7db9" />
-**I created a water material using Shader Graph based on a video tutorial.**
+**I created a water material using Shader Graph based on a video tutorial**
 
 
 ## License 
