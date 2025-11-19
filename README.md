@@ -15,9 +15,9 @@ Since removing that contributor would also delete important commits from the pro
 [Description](https://github.com/ErigoLee/game-dev-fall2025/blob/Assign2/README.md) </br>
 
 # Assignment - 3 Your Design Pattern
-**Branch version:** `Assign3`</br>
+**Branch version:** `Assign3-3`</br>
 **Branch version:** `Assign3-1`</br>
-**Branch version:** `main`</br>
+**Branch version:** `Assign3`</br>
 
 ## Coordinate System
 **Branch version:** `Assign3` & `main` </br>
