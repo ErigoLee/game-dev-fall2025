@@ -21,7 +21,7 @@ Since removing that contributor would also delete important commits from the pro
 
 
 ## Coordinate System
-**Branch version:** `Assign3` </br>
+**Branch version:** `Assign3` series </br>
 In the Coordinate System section, an Object Pool was implemented.
 Within a certain distance, when the user performs rock, scissors, or paper gestures, a red box, orange box, or light blue box is generated respectively.
 A total of three boxes are created for each color. When a box falls or is placed in another coordinate, it becomes deactivated and recycled through the Object Pool.
@@ -92,8 +92,7 @@ GestureDectectorObjectPool.cs
 ```
 
 ### Coordinate System – Factory Pattern (Before Using Object Pool)
-**Branch version:** `main`</br>
-**Branch version:** `Assign4` </br>
+**Branch version:** `Assign3`series </br>
 
 Before implementing the **Object Pool**, the **Factory Pattern** was used in the *Coordinate System* to handle object creation.  
 The mechanism worked in a similar way: when a specific gesture was recognized, an object was generated through the **Factory structure**.
@@ -130,6 +129,110 @@ public void GestureRecognized(GestureType gestureType)
 <img width="1920" height="1003" alt="image" src="https://github.com/user-attachments/assets/de06efe3-cc69-4fd2-b4d4-a008407e7db9" /> </br>
 **I created a water material using Shader Graph based on a video tutorial**
 
+<img width="1144" height="823" alt="image" src="https://github.com/user-attachments/assets/b5e852a6-334b-4c24-a9ca-2efabdd166c4" /> </br>
+
+
+
+**I recently added shader codes** </br>
+I am creating a variety of shaders as part of my practice.
+Using wave-based code, I made a water shader, and I included my code below.
+I referenced the code from the tutorial video at the link below:
+https://www.youtube.com/watch?v=kfM-yu0iQBk&t=13795s
+```
+Shader "Unlit/Wave3"
+{
+    Properties // input data
+    {
+        _ColorA ("ColorA", Color) = (1,1,1,1)
+        _ColorB ("ColorB", Color) = (1,1,1,1)
+        _ColorStart ("Color Start", Range(0,1)) = 1
+        _ColorEnd ("Color End", Range(0,1)) = 1
+        _WaveAmp ("Wave Amplitude", Range(0,0.4)) = 0.1
+    }
+    SubShader
+    {
+        // subshader tags
+        Tags {
+            "RenderType"="Opaque" //tag to inform the render pipeline of what type this is
+           
+        } 
+        LOD 100
+
+        Pass
+        {
+            //pass tags
+
+            CGPROGRAM
+            #pragma vertex vert
+            #pragma fragment frag
+
+            #include "UnityCG.cginc"
+            #define TAU 6.28318530718
+
+            float4 _ColorA;
+            float4 _ColorB;
+            float _ColorStart;
+            float _ColorEnd;
+            float _WaveAmp; 
+
+            //automatically filled out by Unity
+            struct appdata // appdata = MeshData //per-vertext mesh data
+            {
+                float4 vertex : POSITION; // vertex position
+                float3 normals : NORMAL; // local space normal direction
+                //float4 tangent : TANGENT; // tangent direction (xyz) tangent sign (w) surface orientation information
+                //float4 color : COLOR; // vertex colors
+                float2 uv0 : TEXCOORD0; // uv0 diffuse/normal map textures
+                //float4 uv1 : TEXCOORD1; // uv1 coordinates lightmap coordinates
+                //float4 uv2 : TEXCODRD2; // uv2 coordinates lightmap coordinates
+                //float4 uv3 : TEXCODRD3; // uv3 coordinates lightmap coordinates 
+            };
+
+            //data passed from the vertex shader to the fragment shader
+            // this will interpolate/blend across the triangle!
+            struct v2f //v2f = Interpolators
+            {
+                float4 vertex : SV_POSITION; // clip space position
+                float3 normal: TEXCOORD0;
+                float2 uv : TEXCOORD1;        
+                
+            };
+
+            float GetWave(float2 uv){
+                //float2 uvsCentered = uv*2-1;
+                //float radialDistance = length(uvsCentered);
+                float wave = cos( (uv*2-1- _Time.y *0.1) *TAU *5);
+                return wave;
+            }
+
+            v2f vert (appdata v) //appdata = meshData
+            {
+                v2f o;
+
+                //float wave = cos( (v.uv0.y - _Time.y *0.1) *TAU *5);
+                //float wave2 = cos( (v.uv0.x - _Time.y *0.1) *TAU *5);
+                //v.vertex.y = wave * wave2 *  _WaveAmp;
+                v.vertex.y = GetWave(v.uv0) * _WaveAmp;
+                o.vertex = UnityObjectToClipPos(v.vertex); //local space to clip space
+                o.normal = UnityObjectToWorldNormal(v.normals); // just pass through
+                o.uv = v.uv0; //(v.uv0 + _Offset )* _Scale; //passthrough
+                return o;
+            }
+
+            float InverseLerp(float a, float b, float v){
+                return (v-a)/(b-a);
+            }
+
+            float4 frag (v2f i) : SV_Target // color calculation per pixel
+            {
+                
+                return lerp(_ColorA, _ColorB, GetWave(i.uv));
+            }
+            ENDCG
+        }
+    }
+}
+```
 
 ## License 
 - All **source code** in this repository is licensed under the [MIT License](./LICENSE).
@@ -176,3 +279,8 @@ public void GestureRecognized(GestureType gestureType)
 ### Here’s a useful reference video on how to set up hand tracking in Unity: </br>
  Source: https://www.youtube.com/watch?v=NV9WzAfRFz4
  
+### Reference Shader Code - `shader` & `main` branch
+- Shader Basics, Blending & Textures • Shaders for Game Devs [Part 1] & [Part 2]
+ Source: https://www.youtube.com/@acegikmo
+- Fire Shader
+ Source: https://blog.febucci.com/2019/05/fire-shader/
