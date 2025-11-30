@@ -121,9 +121,9 @@ public void GestureRecognized(GestureType gestureType)
     }
 }
 ```
-**Branch version:** `Assign4` </br>
+**Branch version:** `Assign4` & `Assign4-1` & `main` </br>
 # Assignment - 4 Shader Graphs
-**Branch version:** `Assign4`</br>
+**Branch version:** `Assign4` & `Assign4-1` & `main`</br>
 
 <img width="1636" height="954" alt="image" src="https://github.com/user-attachments/assets/3e7e4cbe-4524-4f3a-9101-d6d8fff9c8d5" /> </br>
 <img width="1920" height="1003" alt="image" src="https://github.com/user-attachments/assets/de06efe3-cc69-4fd2-b4d4-a008407e7db9" /> </br>
@@ -279,7 +279,7 @@ Shader "Unlit/Wave3"
 ### Here’s a useful reference video on how to set up hand tracking in Unity: </br>
  Source: https://www.youtube.com/watch?v=NV9WzAfRFz4
  
-### Reference Shader Code - `shader` & `main` branch
+### Reference Shader Code - `Assign4-1` & `main` branch
 - Shader Basics, Blending & Textures • Shaders for Game Devs [Part 1] & [Part 2]
  Source: https://www.youtube.com/@acegikmo
 - Fire Shader
