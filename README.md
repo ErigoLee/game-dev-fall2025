@@ -21,7 +21,7 @@ Since removing that contributor would also delete important commits from the pro
 
 
 ## Coordinate System
-**Branch version:** `Assign3` & `main` </br>
+**Branch version:** `Assign3` </br>
 In the Coordinate System section, an Object Pool was implemented.
 Within a certain distance, when the user performs rock, scissors, or paper gestures, a red box, orange box, or light blue box is generated respectively.
 A total of three boxes are created for each color. When a box falls or is placed in another coordinate, it becomes deactivated and recycled through the Object Pool.
